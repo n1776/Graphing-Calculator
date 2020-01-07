@@ -8,8 +8,9 @@ public class Parser
 {
     public static Evaluable parseToAST(ArrayList<Token> tokens)
     {
-        //not implemented
-        throw new RuntimeException();
+        var visitor = new ShuntingYardVisitor();
+        tokens.forEach(x -> x.accept(visitor));
+        return visitor.getResult();
     }
 
     public static Evaluable parseToAST(String expression)

@@ -1,6 +1,7 @@
 package org.hypergolic.calculator;
 
 import org.hypergolic.calculator.parser.Lexer;
+import org.hypergolic.calculator.parser.Parser;
 import org.hypergolic.calculator.parser.ShuntingYardVisitor;
 
 import java.util.Scanner;
@@ -11,9 +12,8 @@ public class Main
     {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the expression to parse");
-        var output = Lexer.lexExpression(input.nextLine());
-        var visitor = new ShuntingYardVisitor();
-        output.forEach(x -> x.accept(visitor));
-        System.out.println(visitor.getResult().evaluate());
+        final String expr = input.nextLine();
+        final double result = Parser.parseToAST(expr).evaluate();
+        System.out.println(result);
     }
 }
