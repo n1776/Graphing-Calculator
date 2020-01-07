@@ -3,6 +3,7 @@ package org.hypergolic.calculator.parser;
 import org.hypergolic.calculator.Evaluable;
 import org.hypergolic.calculator.ast.Addition;
 import org.hypergolic.calculator.ast.MathConstant;
+import org.hypergolic.calculator.ast.Multiplication;
 
 import java.util.ArrayDeque;
 
@@ -20,6 +21,13 @@ public class ASTBuilder
         final Evaluable second = evaluables.pop();
         final Evaluable first = evaluables.pop();
         evaluables.push(new Addition(first, second));
+    }
+
+    public void add(MultiplicationOperator multiplicationOperator)
+    {
+        final Evaluable second = evaluables.pop();
+        final Evaluable first = evaluables.pop();
+        evaluables.push(new Multiplication(first, second));
     }
 
     public Evaluable getResult()
