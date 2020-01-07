@@ -17,17 +17,5 @@ public class MathConstant implements Evaluable
         return value;
     }
 
-    @Override
-    public void fillVariable(double value)
-    {
-        //Constants aren't variables
-        //Do nothing
-    }
 
-    @Override
-    public boolean hasVariable()
-    {
-        //again, constants aren't variables
-        return false;
-    }
 }
