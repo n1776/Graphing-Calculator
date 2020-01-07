@@ -29,7 +29,7 @@ public class ShuntingYardVisitor implements Visitor
         } else {
             //if we reach this, the stack has run out without hitting a left parenthesis.
             //this means we have a right paren without a matching left paren
-            throw new IllegalStateException("Mismatched Parenthesis");
+            throw new MismatchedParenthesisException();
         }
     }
 
