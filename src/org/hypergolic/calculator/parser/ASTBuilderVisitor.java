@@ -22,7 +22,7 @@ public class ASTBuilderVisitor implements Visitor
     @Override
     public void visit(Constant constant)
     {
-        evaluables.add(new MathConstant(constant.value));
+        evaluables.push(new MathConstant(constant.value));
     }
 
     @Override
