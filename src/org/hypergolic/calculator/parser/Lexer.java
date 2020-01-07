@@ -1,14 +1,21 @@
 package org.hypergolic.calculator.parser;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Lexer
 {
     public static Token lookupToken(String tok)
     {
-        if ("0123456789.".contains(tok))
-            return new Constant(Double.parseDouble(tok));
+        Objects.requireNonNull(tok);
+
+        //this is bad but it works
+        try {
+            double value = Double.parseDouble(tok);
+            return new Constant(value);
+        } catch (NumberFormatException ignored) {}
+
         if (tok.equals("("))
             return new LeftParenthesis();
         if (tok.equals(")"))
