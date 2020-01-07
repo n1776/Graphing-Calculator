@@ -2,7 +2,6 @@ package org.hypergolic.calculator.parser;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 
 public class ShuntingYardVisitor implements Visitor
 {
@@ -57,18 +56,18 @@ public class ShuntingYardVisitor implements Visitor
         opStack.push(operator);
     }
 
-    private static boolean performShuntingYardCheck(Operator operator, Token top)
+    private static boolean performShuntingYardCheck(BinaryOperator binaryOperator, Token top)
     {
         if (top instanceof LeftParenthesis)
             return false;
-        if (!(top instanceof Operator))
+        if (!(top instanceof BinaryOperator))
             return false;
-        Operator topOp = (Operator)top;
-        if (topOp.precedence > operator.precedence)
+        BinaryOperator topOp = (BinaryOperator)top;
+        if (topOp.precedence > binaryOperator.precedence)
             return true;
 
-        if (topOp.precedence == operator.precedence
-            && topOp.associativity == Operator.Associativity.LEFT)
+        if (topOp.precedence == binaryOperator.precedence
+            && topOp.associativity == BinaryOperator.Associativity.LEFT)
             return true;
 
         return false;

@@ -1,6 +1,6 @@
 package org.hypergolic.calculator.parser;
 
-public class MultiplicationOperator extends Operator
+public class MultiplicationOperator extends BinaryOperator
 {
     public MultiplicationOperator()
     {
