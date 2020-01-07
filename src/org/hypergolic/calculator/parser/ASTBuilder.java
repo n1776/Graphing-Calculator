@@ -22,8 +22,6 @@ public class ASTBuilder
         evaluables.push(new Addition(first, second));
     }
 
-
-
     public Evaluable getResult()
     {
         //There should only be one evaluable left, which is the root of the tree
