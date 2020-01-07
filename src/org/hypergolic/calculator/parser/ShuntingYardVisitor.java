@@ -76,10 +76,8 @@ public class ShuntingYardVisitor implements Visitor
 
     public Evaluable getResult()
     {
-        while (!opStack.isEmpty()) {
-            opStack.pop().accept(ASTVisitor);
-        }
-
+        //give the AST visitor all remaining operators
+        opStack.forEach(token -> token.accept(ASTVisitor));
         return ASTVisitor.getResult();
     }
 
