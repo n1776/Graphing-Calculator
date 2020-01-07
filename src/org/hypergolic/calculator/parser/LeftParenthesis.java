@@ -14,4 +14,10 @@ public class LeftParenthesis implements Token
     {
         visitor.visit(this);
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        return obj instanceof LeftParenthesis;
+    }
 }
