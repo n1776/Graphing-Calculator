@@ -14,6 +14,6 @@ public class Main
         var output = Lexer.lexExpression(input.nextLine());
         var visitor = new ShuntingYardVisitor();
         output.forEach(x -> x.accept(visitor));
-        visitor.getResult().forEach(System.out::println);
+        System.out.println(visitor.getResult().evaluate());
     }
 }

@@ -1,13 +1,14 @@
 package org.hypergolic.calculator.parser;
 
+import org.hypergolic.calculator.Evaluable;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 public class ShuntingYardVisitor implements Visitor
 {
     private ArrayDeque<Token> opStack = new ArrayDeque<>();
-    private ArrayList<Token> outputList = new ArrayList<>();
-
+    private ASTBuilderVisitor ASTVisitor = new ASTBuilderVisitor();
 
     @Override
     public void visit(LeftParenthesis leftParenthesis)
@@ -19,7 +20,7 @@ public class ShuntingYardVisitor implements Visitor
     public void visit(RightParenthesis rightParenthesis)
     {
         while (!opStack.isEmpty() && !(opStack.peek() instanceof LeftParenthesis)) {
-            outputList.add(opStack.pop());
+            opStack.pop().accept(ASTVisitor);
         }
         //If we still have an element left, it has to be a left parenthesis
         if (!opStack.isEmpty()) {
@@ -35,14 +36,14 @@ public class ShuntingYardVisitor implements Visitor
     @Override
     public void visit(Constant constant)
     {
-        outputList.add(constant);
+        constant.accept(ASTVisitor);
     }
 
     @Override
     public void visit(AdditionOperator operator)
     {
         while (performShuntingYardCheck(operator, opStack.peek())) {
-            outputList.add(opStack.pop());
+            opStack.pop().accept(ASTVisitor);
         }
         opStack.push(operator);
     }
@@ -51,7 +52,7 @@ public class ShuntingYardVisitor implements Visitor
     public void visit(MultiplicationOperator operator)
     {
         while (performShuntingYardCheck(operator, opStack.peek())) {
-            outputList.add(opStack.pop());
+            opStack.pop().accept(ASTVisitor);
         }
         opStack.push(operator);
     }
@@ -73,16 +74,13 @@ public class ShuntingYardVisitor implements Visitor
         return false;
     }
 
-    public ArrayList<Token> getResult()
+    public Evaluable getResult()
     {
         while (!opStack.isEmpty()) {
-            outputList.add(opStack.pop());
+            opStack.pop().accept(ASTVisitor);
         }
-        //if the output has a left paren in it there is an extra paren
-        if (outputList.stream().anyMatch(x -> x instanceof LeftParenthesis))
-            throw new IllegalStateException("Mismatched Parenthesis");
-        
-        return outputList;
+
+        return ASTVisitor.getResult();
     }
 
 }
