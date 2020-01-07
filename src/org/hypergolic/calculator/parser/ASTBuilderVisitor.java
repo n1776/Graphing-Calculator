@@ -7,23 +7,34 @@ import org.hypergolic.calculator.ast.Multiplication;
 
 import java.util.ArrayDeque;
 
-public class ASTBuilder
+public class ASTBuilderVisitor implements Visitor
 {
     private ArrayDeque<Evaluable> evaluables = new ArrayDeque<>();
 
-    public void add(Constant constant)
+    @Override
+    public void visit(LeftParenthesis leftParenthesis)
+    { throw new MismatchedParenthesisException(); }
+
+    @Override
+    public void visit(RightParenthesis rightParenthesis)
+    { throw new MismatchedParenthesisException(); }
+
+    @Override
+    public void visit(Constant constant)
     {
         evaluables.add(new MathConstant(constant.value));
     }
 
-    public void add(AdditionOperator additionOperator)
+    @Override
+    public void visit(AdditionOperator additionOperator)
     {
         final Evaluable second = evaluables.pop();
         final Evaluable first = evaluables.pop();
         evaluables.push(new Addition(first, second));
     }
 
-    public void add(MultiplicationOperator multiplicationOperator)
+    @Override
+    public void visit(MultiplicationOperator multiplicationOperator)
     {
         final Evaluable second = evaluables.pop();
         final Evaluable first = evaluables.pop();
