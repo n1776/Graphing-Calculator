@@ -13,7 +13,7 @@ public class Main
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the expression to parse");
         final String expr = input.nextLine();
-        final double result = Parser.parseToAST(expr).evaluate();
+        final var result = Parser.parseToAST(expr).evaluate();
         System.out.println(result);
     }
 }
