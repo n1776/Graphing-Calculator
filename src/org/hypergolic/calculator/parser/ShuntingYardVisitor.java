@@ -39,31 +39,30 @@ public class ShuntingYardVisitor implements Visitor
         constant.accept(ASTVisitor);
     }
 
-    @Override
-    public void visit(AdditionOperator operator)
+    private void addBinaryOp(BinaryOperator operator)
     {
         while (performShuntingYardCheck(operator, opStack.peek())) {
             opStack.pop().accept(ASTVisitor);
         }
         opStack.push(operator);
+    }
+
+    @Override
+    public void visit(AdditionOperator operator)
+    {
+        addBinaryOp(operator);
     }
 
     @Override
     public void visit(SubtractionOperator operator)
     {
-        while (performShuntingYardCheck(operator, opStack.peek())) {
-            opStack.pop().accept(ASTVisitor);
-        }
-        opStack.push(operator);
+        addBinaryOp(operator);
     }
 
     @Override
     public void visit(MultiplicationOperator operator)
     {
-        while (performShuntingYardCheck(operator, opStack.peek())) {
-            opStack.pop().accept(ASTVisitor);
-        }
-        opStack.push(operator);
+        addBinaryOp(operator);
     }
 
     private static boolean performShuntingYardCheck(BinaryOperator binaryOperator, Token top)
