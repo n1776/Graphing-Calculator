@@ -9,6 +9,12 @@ public class SubtractionOperator extends BinaryOperator
     }
 
     @Override
+    public boolean equals(Object obj)
+    {
+        return obj instanceof SubtractionOperator;
+    }
+
+    @Override
     public String toString()
     {
         return "-";

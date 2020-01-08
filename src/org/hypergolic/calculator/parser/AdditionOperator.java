@@ -9,6 +9,12 @@ public class AdditionOperator extends BinaryOperator
     }
 
     @Override
+    public boolean equals(Object obj)
+    {
+        return obj instanceof AdditionOperator;
+    }
+
+    @Override
     public String toString()
     {
         return "+";

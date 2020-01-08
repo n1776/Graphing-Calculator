@@ -7,7 +7,11 @@ public class MultiplicationOperator extends BinaryOperator
         this.precedence = 2;
         this.associativity = Associativity.LEFT;
     }
-
+    @Override
+    public boolean equals(Object obj)
+    {
+        return obj instanceof MultiplicationOperator;
+    }
     @Override
     public String toString()
     {
