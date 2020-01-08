@@ -65,6 +65,12 @@ public class ShuntingYardVisitor implements Visitor
         addBinaryOp(operator);
     }
 
+    @Override
+    public void visit(DivisionOperator operator)
+    {
+        addBinaryOp(operator);
+    }
+
     private static boolean performShuntingYardCheck(BinaryOperator binaryOperator, Token top)
     {
         if (top instanceof LeftParenthesis)

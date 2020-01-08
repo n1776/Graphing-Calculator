@@ -26,6 +26,8 @@ public class Lexer
             return new SubtractionOperator();
         if (tok.equals("*"))
             return new MultiplicationOperator();
+        if (tok.equals("/"))
+            return new DivisionOperator();
         //not a valid token
         return null;
     }

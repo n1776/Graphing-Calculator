@@ -8,4 +8,5 @@ public interface Visitor
     void visit(AdditionOperator operator);
     void visit(SubtractionOperator operator);
     void visit(MultiplicationOperator operator);
+    void visit(DivisionOperator operator);
 }
