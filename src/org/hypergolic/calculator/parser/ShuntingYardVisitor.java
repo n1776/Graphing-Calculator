@@ -49,6 +49,15 @@ public class ShuntingYardVisitor implements Visitor
     }
 
     @Override
+    public void visit(SubtractionOperator operator)
+    {
+        while (performShuntingYardCheck(operator, opStack.peek())) {
+            opStack.pop().accept(ASTVisitor);
+        }
+        opStack.push(operator);
+    }
+
+    @Override
     public void visit(MultiplicationOperator operator)
     {
         while (performShuntingYardCheck(operator, opStack.peek())) {

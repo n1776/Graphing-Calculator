@@ -4,6 +4,7 @@ import org.hypergolic.calculator.Evaluable;
 import org.hypergolic.calculator.ast.Addition;
 import org.hypergolic.calculator.ast.MathConstant;
 import org.hypergolic.calculator.ast.Multiplication;
+import org.hypergolic.calculator.ast.Subtraction;
 
 import java.util.ArrayDeque;
 
@@ -31,6 +32,14 @@ public class ASTBuilderVisitor implements Visitor
         final Evaluable second = evaluables.pop();
         final Evaluable first = evaluables.pop();
         evaluables.push(new Addition(first, second));
+    }
+
+    @Override
+    public void visit(SubtractionOperator operator)
+    {
+        final Evaluable second = evaluables.pop();
+        final Evaluable first = evaluables.pop();
+        evaluables.push(new Subtraction(first, second));
     }
 
     @Override

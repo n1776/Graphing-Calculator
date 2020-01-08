@@ -22,6 +22,8 @@ public class Lexer
             return new RightParenthesis();
         if (tok.equals("+"))
             return new AdditionOperator();
+        if (tok.equals("-"))
+            return new SubtractionOperator();
         if (tok.equals("*"))
             return new MultiplicationOperator();
         //not a valid token
