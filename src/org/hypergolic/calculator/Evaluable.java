@@ -2,6 +2,5 @@ package org.hypergolic.calculator;
 
 public interface Evaluable
 {
-    double evaluate();
-
+    double evaluate(double x);
 }

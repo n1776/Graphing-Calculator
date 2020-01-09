@@ -11,8 +11,8 @@ public class Division extends BinaryOperator
     }
 
     @Override
-    public double evaluate()
+    public double evaluate(double x)
     {
-        return param1.evaluate() / param2.evaluate();
+        return param1.evaluate(x) / param2.evaluate(x);
     }
 }

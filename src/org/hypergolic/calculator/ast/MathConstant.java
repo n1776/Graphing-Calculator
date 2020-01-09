@@ -12,7 +12,7 @@ public class MathConstant implements Evaluable
     }
 
     @Override
-    public double evaluate()
+    public double evaluate(double x)
     {
         return value;
     }

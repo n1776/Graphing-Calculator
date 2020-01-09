@@ -11,5 +11,5 @@ public class Multiplication extends BinaryOperator
     }
 
     @Override
-    public double evaluate() { return param1.evaluate() * param2.evaluate(); }
+    public double evaluate(double x) { return param1.evaluate(x) * param2.evaluate(x); }
 }

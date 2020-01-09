@@ -9,8 +9,8 @@ public class Sine extends UnaryOperator
         this.param = param;
     }
     @Override
-    public double evaluate()
+    public double evaluate(double x)
     {
-        return Math.sin(param.evaluate());
+        return Math.sin(param.evaluate(x));
     }
 }

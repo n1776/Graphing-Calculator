@@ -14,8 +14,8 @@ public class ForeignFunction extends UnaryOperator
     }
 
     @Override
-    public double evaluate()
+    public double evaluate(double x)
     {
-        return operator.applyAsDouble(param.evaluate());
+        return operator.applyAsDouble(param.evaluate(x));
     }
 }

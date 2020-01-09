@@ -10,7 +10,7 @@ class ParserTest
     private void testExpr(String expr, double expectedValue)
     {
         final double DELTA = 0.0001;
-        assertEquals(expectedValue, Parser.parseToAST(expr).evaluate(), DELTA);
+        assertEquals(expectedValue, Parser.parseToAST(expr).evaluate(0), DELTA);
     }
 
     @Test
