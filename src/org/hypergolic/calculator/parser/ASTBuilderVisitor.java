@@ -10,6 +10,16 @@ public class ASTBuilderVisitor implements Visitor
     private ArrayDeque<Evaluable> evaluables = new ArrayDeque<>();
 
     @Override
+    public Evaluable getResult()
+    {
+        //There should only be one evaluable left, which is the root of the tree
+        if (evaluables.size() != 1)
+            throw new IllegalStateException("Invalid expression added");
+        else
+            return evaluables.pop();
+    }
+
+    @Override
     public void visit(LeftParenthesis leftParenthesis)
     { throw new MismatchedParenthesisException(); }
 
@@ -54,15 +64,5 @@ public class ASTBuilderVisitor implements Visitor
         final Evaluable first = evaluables.pop();
         evaluables.push(new Division(first, second));
     }
-
-    public Evaluable getResult()
-    {
-        //There should only be one evaluable left, which is the root of the tree
-        if (evaluables.size() != 1)
-            throw new IllegalStateException("Invalid expression added");
-        else
-            return evaluables.pop();
-    }
-
 
 }

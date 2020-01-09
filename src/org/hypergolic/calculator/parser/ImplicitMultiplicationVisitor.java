@@ -8,6 +8,7 @@ public class ImplicitMultiplicationVisitor implements Visitor
     private ArrayList<Token> tokens = new ArrayList<>();
     private boolean shouldEmitMultiply = false;
 
+    @Override
     public ArrayList<Token> getResult()
     {
         return tokens;

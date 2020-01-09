@@ -2,6 +2,8 @@ package org.hypergolic.calculator.parser;
 
 public interface Visitor
 {
+    Object getResult();
+
     void visit(LeftParenthesis leftParenthesis);
     void visit(RightParenthesis rightParenthesis);
     void visit(Constant constant);

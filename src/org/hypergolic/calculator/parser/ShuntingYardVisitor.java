@@ -11,6 +11,14 @@ public class ShuntingYardVisitor implements Visitor
     private ASTBuilderVisitor ASTVisitor = new ASTBuilderVisitor();
 
     @Override
+    public Evaluable getResult()
+    {
+        //give the AST visitor all remaining operators
+        opStack.forEach(token -> token.accept(ASTVisitor));
+        return ASTVisitor.getResult();
+    }
+
+    @Override
     public void visit(LeftParenthesis leftParenthesis)
     {
         opStack.push(leftParenthesis);
@@ -88,11 +96,6 @@ public class ShuntingYardVisitor implements Visitor
         return false;
     }
 
-    public Evaluable getResult()
-    {
-        //give the AST visitor all remaining operators
-        opStack.forEach(token -> token.accept(ASTVisitor));
-        return ASTVisitor.getResult();
-    }
+
 
 }
