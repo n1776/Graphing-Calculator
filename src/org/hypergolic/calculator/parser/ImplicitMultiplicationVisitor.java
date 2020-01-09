@@ -28,7 +28,7 @@ public class ImplicitMultiplicationVisitor implements Visitor
     @Override
     public void visit(RightParenthesis rightParenthesis)
     {
-        shouldEmitMultiply = false;
+        shouldEmitMultiply = true;
         tokens.add(rightParenthesis);
     }
 
