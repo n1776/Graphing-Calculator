@@ -11,9 +11,16 @@ public class Main
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter the expression to parse");
-        final String expr = input.nextLine();
-        final var result = Parser.parseToAST(expr).evaluate(0);
-        System.out.println(result);
+        while (true) {
+            System.out.println("Enter the expression to parse: ");
+            final String expr = input.nextLine();
+            final var result = Parser.parseToAST(expr);
+            if (result.hasVariable()) {
+                System.out.println("Enter the value of x: ");
+                System.out.println(result.evaluate(input.nextDouble()));
+            } else {
+                System.out.println(result.evaluate(Double.NaN));
+            }
+        }
     }
 }
