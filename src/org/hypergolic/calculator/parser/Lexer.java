@@ -31,6 +31,8 @@ public class Lexer
             return new MultiplicationOperator();
         if (tok.equals("/"))
             return new DivisionOperator();
+        if (tok.equals("^"))
+            return new ExponentOperator();
         //not a valid token
         return null;
     }
@@ -38,7 +40,7 @@ public class Lexer
     {
         ArrayList<Token> tokens = new ArrayList<>();
         Scanner scan = new Scanner(expression);
-        String regex = "(?<=[-−+*/x()])|(?=[-−+*/x()])";
+        String regex = "(?<=[-−+*/^x()])|(?=[-−+*/^x()])";
         String[] toks = expression.split(regex);
         for (String tok : toks) {
             tok = tok.trim();

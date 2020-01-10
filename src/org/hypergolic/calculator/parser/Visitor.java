@@ -12,4 +12,5 @@ public interface Visitor
     void visit(SubtractionOperator operator);
     void visit(MultiplicationOperator operator);
     void visit(DivisionOperator operator);
+    void visit(ExponentOperator operator);
 }

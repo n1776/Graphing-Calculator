@@ -75,4 +75,11 @@ public class ImplicitMultiplicationVisitor implements Visitor
         shouldEmitMultiply = false;
         tokens.add(operator);
     }
+
+    @Override
+    public void visit(ExponentOperator operator)
+    {
+        shouldEmitMultiply = false;
+        tokens.add(operator);
+    }
 }

@@ -69,4 +69,11 @@ public class ASTBuilderVisitor implements Visitor
         evaluables.push(new Division(first, second));
     }
 
+    @Override
+    public void visit(ExponentOperator operator)
+    {
+        final Evaluable second = evaluables.pop();
+        final Evaluable first = evaluables.pop();
+        evaluables.push(new Exponent(first, second));
+    }
 }
