@@ -47,6 +47,9 @@ public class ShuntingYardVisitor implements Visitor
         constant.accept(ASTVisitor);
     }
 
+    @Override
+    public void visit(Variable variable) { variable.accept(ASTVisitor); }
+
     private void addBinaryOp(BinaryOperator operator)
     {
         while (performShuntingYardCheck(operator, opStack.peek())) {

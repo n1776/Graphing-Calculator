@@ -34,6 +34,10 @@ public class ASTBuilderVisitor implements Visitor
     }
 
     @Override
+    public void visit(Variable variable)
+    { evaluables.push(new MathVariable()); }
+
+    @Override
     public void visit(AdditionOperator additionOperator)
     {
         final Evaluable second = evaluables.pop();

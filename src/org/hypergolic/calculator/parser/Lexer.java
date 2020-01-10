@@ -1,5 +1,7 @@
 package org.hypergolic.calculator.parser;
 
+import org.hypergolic.calculator.ast.MathVariable;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -15,7 +17,8 @@ public class Lexer
             double value = Double.parseDouble(tok);
             return new Constant(value);
         } catch (NumberFormatException ignored) {}
-
+        if (tok.equals("x"))
+            return new Variable();
         if (tok.equals("("))
             return new LeftParenthesis();
         if (tok.equals(")"))
@@ -35,7 +38,7 @@ public class Lexer
     {
         ArrayList<Token> tokens = new ArrayList<>();
         Scanner scan = new Scanner(expression);
-        String regex = "(?<=[-−+*/()])|(?=[-−+*/()])";
+        String regex = "(?<=[-−+*/x()])|(?=[-−+*/x()])";
         String[] toks = expression.split(regex);
         for (String tok : toks) {
             tok = tok.trim();

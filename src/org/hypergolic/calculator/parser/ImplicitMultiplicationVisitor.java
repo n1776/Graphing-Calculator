@@ -40,6 +40,15 @@ public class ImplicitMultiplicationVisitor implements Visitor
     }
 
     @Override
+    public void visit(Variable variable)
+    {
+        if (shouldEmitMultiply)
+            emitMultiply();
+        shouldEmitMultiply = true;
+        tokens.add(variable);
+    }
+
+    @Override
     public void visit(AdditionOperator operator)
     {
         shouldEmitMultiply = false;
