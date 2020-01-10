@@ -20,4 +20,10 @@ public abstract class BinaryOperator implements Evaluable
                 + "\n" + param1.getTreeStructure(depth+1)
                 + "\n" + param2.getTreeStructure(depth+1);
     }
+
+    @Override
+    public String toString()
+    {
+        return this.getClass().getSimpleName();
+    }
 }

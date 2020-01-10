@@ -22,4 +22,10 @@ public class MathConstant implements Evaluable
     {
         return false;
     }
+
+    @Override
+    public String toString()
+    {
+        return this.getClass().getSimpleName() + ": " + value;
+    }
 }
