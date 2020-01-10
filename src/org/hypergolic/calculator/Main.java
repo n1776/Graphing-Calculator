@@ -21,6 +21,8 @@ public class Main
             } else {
                 System.out.println(result.evaluate(Double.NaN));
             }
+            //clear buffer
+            input.nextLine();
         }
     }
 }
