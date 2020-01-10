@@ -9,4 +9,10 @@ public class MathVariable implements Evaluable
     {
         return x;
     }
+
+    @Override
+    public boolean hasVariable()
+    {
+        return true;
+    }
 }

@@ -15,4 +15,5 @@ public class Subtraction extends BinaryOperator
     {
         return param1.evaluate(x) - param2.evaluate(x);
     }
+
 }

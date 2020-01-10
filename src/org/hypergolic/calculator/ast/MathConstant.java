@@ -17,5 +17,9 @@ public class MathConstant implements Evaluable
         return value;
     }
 
-
+    @Override
+    public boolean hasVariable()
+    {
+        return false;
+    }
 }
