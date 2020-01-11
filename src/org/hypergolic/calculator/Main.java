@@ -15,7 +15,7 @@ public class Main
             System.out.println("Enter the expression to parse: ");
             final String expr = input.nextLine();
             final var result = Parser.parseToAST(expr);
-            System.out.println(result.getTreeStructure(0));
+            System.out.println(result.getTreeStructure());
             if (result.hasVariable()) {
                 System.out.println("Enter the value of x: ");
                 System.out.println(result.evaluate(input.nextDouble()));

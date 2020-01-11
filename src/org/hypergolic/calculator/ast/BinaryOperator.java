@@ -14,11 +14,21 @@ public abstract class BinaryOperator implements Evaluable
     }
 
     @Override
-    public String getTreeStructure(int depth)
+    public String getTreeStructure(String indent, boolean last, boolean isRoot)
     {
-        return Evaluable.super.getTreeStructure(depth)
-                + "\n" + param1.getTreeStructure(depth+1)
-                + "\n" + param2.getTreeStructure(depth+1);
+        String str;
+        String oldIndent = indent;
+        if (last) {
+            str = "└ ";
+            indent += "  ";
+        }
+        else {
+            str = isRoot ? "" : "├ ";
+            indent += isRoot ? "" : "│ ";
+        }
+        return oldIndent + str + this.toString() + "\n"
+                + param1.getTreeStructure(indent, false, false)
+                + param2.getTreeStructure(indent, true, false);
     }
 
     @Override
