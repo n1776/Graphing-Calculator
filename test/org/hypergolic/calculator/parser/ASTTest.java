@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ParserTest
+class ASTTest
 {
 
     private void testExpr(String expr, double expectedValue)
