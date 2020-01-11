@@ -6,14 +6,14 @@ public class Subtraction extends BinaryOperator
 {
     public Subtraction(Evaluable param1, Evaluable param2)
     {
-        this.param1 = param1;
-        this.param2 = param2;
+        this.left = param1;
+        this.right = param2;
     }
 
     @Override
     public double evaluate(double x)
     {
-        return param1.evaluate(x) - param2.evaluate(x);
+        return left.evaluate(x) - right.evaluate(x);
     }
 
 }

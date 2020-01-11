@@ -4,13 +4,13 @@ import org.hypergolic.calculator.Evaluable;
 
 public abstract class BinaryOperator implements Evaluable
 {
-    Evaluable param1;
-    Evaluable param2;
+    Evaluable left;
+    Evaluable right;
 
     @Override
     public boolean hasVariable()
     {
-        return param1.hasVariable() || param2.hasVariable();
+        return left.hasVariable() || right.hasVariable();
     }
 
     @Override
@@ -27,8 +27,8 @@ public abstract class BinaryOperator implements Evaluable
             indent += isRoot ? "" : "│ ";
         }
         return oldIndent + str + this.toString() + "\n"
-                + param1.getTreeStructure(indent, false, false)
-                + param2.getTreeStructure(indent, true, false);
+                + left.getTreeStructure(indent, false, false)
+                + right.getTreeStructure(indent, true, false);
     }
 
     @Override

@@ -6,13 +6,13 @@ public class Exponent extends BinaryOperator
 {
     public Exponent(Evaluable param1, Evaluable param2)
     {
-        this.param1 = param1;
-        this.param2 = param2;
+        this.left = param1;
+        this.right = param2;
     }
 
     @Override
     public double evaluate(double x)
     {
-        return Math.pow(param1.evaluate(x), param2.evaluate(x));
+        return Math.pow(left.evaluate(x), right.evaluate(x));
     }
 }
