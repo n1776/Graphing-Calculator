@@ -19,6 +19,8 @@ public class Main
             System.out.println("Enter point to find derivative at");
             final double point = input.nextDouble();
             System.out.println(takeDerivative(func, point));
+            //flush scanner
+            input.nextLine();
         }
     }
 
