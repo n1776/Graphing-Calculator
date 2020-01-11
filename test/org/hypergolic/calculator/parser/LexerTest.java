@@ -1,21 +1,36 @@
 package org.hypergolic.calculator.parser;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LexerTest
 {
-    private static List<Token> oneWithParen = Arrays.asList(
-            new LeftParenthesis(),
-            new Constant(1),
-            new RightParenthesis());
-    @Test
-    void lexExpression()
+
+    @ParameterizedTest
+    @MethodSource
+    void lexExpression_lexToken(String expr, Token token)
     {
-        assertEquals(oneWithParen, Lexer.lexExpression("(1)"));
+        assertEquals(token, Lexer.lexExpression(expr).get(0));
     }
+    private static Stream<Arguments> lexExpression_lexToken()
+    {
+        return Stream.of(
+                Arguments.of("(", new LeftParenthesis()),
+                Arguments.of(")", new RightParenthesis()),
+                Arguments.of("+", new AdditionOperator()),
+                Arguments.of("-", new SubtractionOperator()),
+                Arguments.of("*", new MultiplicationOperator()),
+                Arguments.of("/", new DivisionOperator()),
+                Arguments.of("^", new ExponentOperator())
+        );
+    }
+
 }
