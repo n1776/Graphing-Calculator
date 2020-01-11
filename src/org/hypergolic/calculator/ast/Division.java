@@ -4,10 +4,9 @@ import org.hypergolic.calculator.Evaluable;
 
 public class Division extends BinaryOperator
 {
-    public Division(Evaluable param1, Evaluable param2)
+    public Division(Evaluable left, Evaluable right)
     {
-        this.left = param1;
-        this.right = param2;
+        super(left, right);
     }
 
     @Override

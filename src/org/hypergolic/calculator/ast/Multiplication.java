@@ -4,10 +4,9 @@ import org.hypergolic.calculator.Evaluable;
 
 public class Multiplication extends BinaryOperator
 {
-    public Multiplication(Evaluable param1, Evaluable param2)
+    public Multiplication(Evaluable left, Evaluable right)
     {
-        this.left = param1;
-        this.right = param2;
+        super(left, right);
     }
 
     @Override

@@ -4,10 +4,9 @@ import org.hypergolic.calculator.Evaluable;
 
 public class Addition extends BinaryOperator
 {
-    public Addition(Evaluable param1, Evaluable param2)
+    public Addition(Evaluable left, Evaluable right)
     {
-        this.left = param1;
-        this.right = param2;
+        super(left, right);
     }
 
     @Override

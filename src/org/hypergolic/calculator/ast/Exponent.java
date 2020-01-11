@@ -4,10 +4,9 @@ import org.hypergolic.calculator.Evaluable;
 
 public class Exponent extends BinaryOperator
 {
-    public Exponent(Evaluable param1, Evaluable param2)
+    public Exponent(Evaluable left, Evaluable right)
     {
-        this.left = param1;
-        this.right = param2;
+        super(left, right);
     }
 
     @Override

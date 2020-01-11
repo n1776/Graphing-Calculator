@@ -4,10 +4,9 @@ import org.hypergolic.calculator.Evaluable;
 
 public class Subtraction extends BinaryOperator
 {
-    public Subtraction(Evaluable param1, Evaluable param2)
+    public Subtraction(Evaluable left, Evaluable right)
     {
-        this.left = param1;
-        this.right = param2;
+        super(left, right);
     }
 
     @Override

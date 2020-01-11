@@ -4,8 +4,14 @@ import org.hypergolic.calculator.Evaluable;
 
 public abstract class BinaryOperator implements Evaluable
 {
-    Evaluable left;
-    Evaluable right;
+    final Evaluable left;
+    final Evaluable right;
+
+    protected BinaryOperator(Evaluable left, Evaluable right)
+    {
+        this.left = left;
+        this.right = right;
+    }
 
     @Override
     public boolean hasVariable()
