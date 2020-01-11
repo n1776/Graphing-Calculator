@@ -10,18 +10,8 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Scanner input = new Scanner(System.in);
-        while (true) {
-            System.out.println("Enter the expression to parse: ");
-            final String expr = input.nextLine();
-            final var func = Parser.parseToAST(expr);
-            //System.out.println(result.getTreeStructure());
-            System.out.println("Enter point to find derivative at");
-            final double point = input.nextDouble();
-            System.out.println(takeDerivative(func, point));
-            //flush scanner
-            input.nextLine();
-        }
+        CommandLine commandLine = new CommandLine();
+        commandLine.process();
     }
 
     private static double takeDerivative(Evaluable f, double x)
