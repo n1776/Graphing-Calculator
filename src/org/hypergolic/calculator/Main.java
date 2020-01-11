@@ -14,14 +14,4 @@ public class Main
         commandLine.process();
     }
 
-    private static double takeDerivative(Evaluable f, double x)
-    {
-        //derivative of a constant is always 0
-        if (!f.hasVariable())
-            return 0;
-        //formula from https://en.wikipedia.org/wiki/Symmetric_derivative
-        //according to Wikipedia, 0.001 is used by the TI-84
-        final double h = 0.001;
-        return ((f.evaluate(x + h) - f.evaluate(x - h)) / (2*h));
-    }
 }
