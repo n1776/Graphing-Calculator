@@ -14,16 +14,11 @@ public class Main
         while (true) {
             System.out.println("Enter the expression to parse: ");
             final String expr = input.nextLine();
-            final var result = Parser.parseToAST(expr);
-            System.out.println(result.getTreeStructure());
-            if (result.hasVariable()) {
-                System.out.println("Enter the value of x: ");
-                System.out.println(result.evaluate(input.nextDouble()));
-            } else {
-                System.out.println(result.evaluate(Double.NaN));
-            }
-            //clear buffer
-            input.nextLine();
+            final var func = Parser.parseToAST(expr);
+            //System.out.println(result.getTreeStructure());
+            System.out.println("Enter point to find derivative at");
+            final double point = input.nextDouble();
+            System.out.println(takeDerivative(func, point));
         }
     }
 
