@@ -1,6 +1,8 @@
 package org.hypergolic.calculator.parser;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,12 +38,12 @@ class ParserTest
         testExpr("1", "(1)");
         testExpr("2x", "2*x");
         testExpr("2x^2+9x-1", "2*(x^2)+9*x-1");
-
+    }
+    @ParameterizedTest
+    @ValueSource(strings = {"(1+1", "1+1)"})
+    void parseToAST_detectInvalidParen(String expr)
+    {
         assertThrows(MismatchedParenthesisException.class,
-                () -> Parser.parseToAST("(1+1"));
-        assertThrows(MismatchedParenthesisException.class,
-                () -> Parser.parseToAST("1+1)"));
-
-        assertDoesNotThrow(() -> Parser.parseToAST("()1"));
+                () -> Parser.parseToAST(expr));
     }
 }
