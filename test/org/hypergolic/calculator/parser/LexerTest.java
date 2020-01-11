@@ -32,5 +32,19 @@ class LexerTest
                 Arguments.of("^", new ExponentOperator())
         );
     }
+    @ParameterizedTest
+    @MethodSource
+    void lexExpression_lexNumber(String expr, double value)
+    {
+        assertEquals(new Constant(value), Lexer.lexExpression(expr).get(0));
+    }
+    private static Stream<Arguments> lexExpression_lexNumber()
+    {
+        return Stream.of(
+                Arguments.of("0", 0),
+                Arguments.of("1", 1),
+                Arguments.of("123.456", 123.456)
+        );
+    }
 
 }
