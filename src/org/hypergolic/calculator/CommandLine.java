@@ -34,8 +34,14 @@ public class CommandLine
     {
         while (shouldContinue())
         {
+            printStream.print("> ");
             String input = scanner.nextLine();
-            printStream.println(Parser.parseToAST(input).evaluate(0));
+            Evaluable ast = Parser.parseToAST(input);
+            if (ast.hasVariable())
+                printStream.println("[anonymous function]");
+            else
+                printStream.println(ast.evaluate(Double.NaN));
+
         }
     }
 
