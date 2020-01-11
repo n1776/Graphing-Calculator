@@ -21,4 +21,16 @@ public class MathVariable implements Evaluable
     {
         return this.getClass().getSimpleName();
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        return obj instanceof MathVariable;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return 0;
+    }
 }

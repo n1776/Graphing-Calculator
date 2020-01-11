@@ -2,6 +2,8 @@ package org.hypergolic.calculator.ast;
 
 import org.hypergolic.calculator.Evaluable;
 
+import java.util.Objects;
+
 public abstract class BinaryOperator implements Evaluable
 {
     final Evaluable left;
@@ -41,5 +43,21 @@ public abstract class BinaryOperator implements Evaluable
     public String toString()
     {
         return this.getClass().getSimpleName();
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BinaryOperator that = (BinaryOperator) o;
+        return left.equals(that.left) &&
+                right.equals(that.right);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(left, right);
     }
 }
