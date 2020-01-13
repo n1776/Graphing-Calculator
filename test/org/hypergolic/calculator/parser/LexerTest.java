@@ -18,7 +18,7 @@ class LexerTest
     @MethodSource
     void lexExpression_lexToken(String expr, Token token)
     {
-        assertEquals(token, Lexer.lexExpression(expr).get(0));
+        assertEquals(token, new Lexer().lexExpression(expr).get(0));
     }
     private static Stream<Arguments> lexExpression_lexToken()
     {
@@ -36,7 +36,7 @@ class LexerTest
     @MethodSource
     void lexExpression_lexNumber(String expr, double value)
     {
-        assertEquals(new Constant(value), Lexer.lexExpression(expr).get(0));
+        assertEquals(new Constant(value), new Lexer().lexExpression(expr).get(0));
     }
     private static Stream<Arguments> lexExpression_lexNumber()
     {
