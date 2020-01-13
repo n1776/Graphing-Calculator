@@ -25,7 +25,7 @@ public class Lexer
     {
 
     }
-    public void emitToken()
+    private void emitToken()
     {
         if (currentState == LexerState.NUMBER) {
             double value = Double.parseDouble(currentToken.toString());
@@ -44,12 +44,12 @@ public class Lexer
         currentState = LexerState.SUCCESS;
         currentToken.setLength(0);
     }
-    public void emitIfDifferentState(LexerState state)
+    private void emitIfDifferentState(LexerState state)
     {
         if (currentState != state && currentState != LexerState.INITIAL)
             emitToken();
     }
-    public void lookupChar(char c)
+    private void lookupChar(char c)
     {
         if ("0123456789.".indexOf(c) != -1) {
             emitIfDifferentState(LexerState.NUMBER);
