@@ -36,8 +36,24 @@ public class Lexer
         {
             case "+":
                 tokens.add(new AdditionOperator());
+                break;
             case "-":
                 tokens.add(new SubtractionOperator());
+                break;
+            case "*":
+                tokens.add(new MultiplicationOperator());
+                break;
+            case "/":
+                tokens.add(new DivisionOperator());
+                break;
+            case "^":
+                tokens.add(new ExponentOperator());
+            case "(":
+                tokens.add(new LeftParenthesis());
+                break;
+            case ")":
+                tokens.add(new RightParenthesis());
+                break;
         }
 
         //clear the current token
