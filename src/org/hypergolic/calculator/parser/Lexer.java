@@ -8,49 +8,48 @@ import java.util.Scanner;
 
 public class Lexer
 {
+    private enum LexerState
+    {
+        INITIAL,
+        AMBIGUOUS_FUNCTION,
+        NUMBER,
+        SUCCESS,
+        INVALID
+        //operator not needed since all operators are one char
+    }
+    private LexerState currentState = LexerState.INITIAL;
+    private StringBuilder currentToken = new StringBuilder();
+    private ArrayList<Token> tokens = new ArrayList<>();
+
     public Lexer()
     {
-        //no state
-    }
 
-    public Token lookupToken(String tok)
+    }
+    public void emitToken()
     {
-        Objects.requireNonNull(tok);
+        switch (currentToken.toString())
+        {
 
-        //this is bad but it works
-        try {
-            double value = Double.parseDouble(tok);
-            return new Constant(value);
-        } catch (NumberFormatException ignored) {}
-        if (tok.equals("x"))
-            return new Variable();
-        if (tok.equals("("))
-            return new LeftParenthesis();
-        if (tok.equals(")"))
-            return new RightParenthesis();
-        if (tok.equals("+"))
-            return new AdditionOperator();
-        if (tok.equals("-"))
-            return new SubtractionOperator();
-        if (tok.equals("*"))
-            return new MultiplicationOperator();
-        if (tok.equals("/"))
-            return new DivisionOperator();
-        if (tok.equals("^"))
-            return new ExponentOperator();
-        //not a valid token
-        return null;
+        }
     }
+    public void emitIfDifferentState(LexerState state)
+    {
+        if (currentState != state && currentState != LexerState.INITIAL)
+            emitToken();
+    }
+    public void lookupChar(char c)
+    {
+        if ("0123456789.".indexOf(c) != -1) {
+            emitIfDifferentState(LexerState.NUMBER);
+            currentToken.append(c);
+
+        }
+    }
+
     public ArrayList<Token> lexExpression(String expression)
     {
-        ArrayList<Token> tokens = new ArrayList<>();
-        Scanner scan = new Scanner(expression);
-        String regex = "(?<=[-−+*/^x()])|(?=[-−+*/^x()])";
-        String[] toks = expression.split(regex);
-        for (String tok : toks) {
-            tok = tok.trim();
-            tokens.add(lookupToken(tok));
-        }
+        for (char c : expression.toCharArray())
+            lookupChar(c);
         return tokens;
     }
 }
