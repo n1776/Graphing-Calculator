@@ -8,7 +8,12 @@ import java.util.Scanner;
 
 public class Lexer
 {
-    public static Token lookupToken(String tok)
+    public Lexer()
+    {
+        //no state
+    }
+
+    public Token lookupToken(String tok)
     {
         Objects.requireNonNull(tok);
 
@@ -36,7 +41,7 @@ public class Lexer
         //not a valid token
         return null;
     }
-    public static ArrayList<Token> lexExpression(String expression)
+    public ArrayList<Token> lexExpression(String expression)
     {
         ArrayList<Token> tokens = new ArrayList<>();
         Scanner scan = new Scanner(expression);

@@ -18,6 +18,6 @@ public class Parser
     public static Evaluable parseToAST(String expression)
     {
         //Shortcut
-        return parseToAST(Lexer.lexExpression(expression));
+        return parseToAST(new Lexer().lexExpression(expression));
     }
 }
