@@ -27,10 +27,22 @@ public class Lexer
     }
     public void emitToken()
     {
+        if (currentState == LexerState.NUMBER) {
+            double value = Double.parseDouble(currentToken.toString());
+            tokens.add(new Constant(value));
+        }
+
         switch (currentToken.toString())
         {
-
+            case "+":
+                tokens.add(new AdditionOperator());
+            case "-":
+                tokens.add(new SubtractionOperator());
         }
+
+        //clear the current token
+        currentState = LexerState.SUCCESS;
+        currentToken.setLength(0);
     }
     public void emitIfDifferentState(LexerState state)
     {
@@ -41,8 +53,12 @@ public class Lexer
     {
         if ("0123456789.".indexOf(c) != -1) {
             emitIfDifferentState(LexerState.NUMBER);
+            currentState = LexerState.NUMBER;
             currentToken.append(c);
-
+        }
+        if ("+-*/^()".indexOf(c) != -1) {
+            currentToken.append(c);
+            emitToken();
         }
     }
 
@@ -50,6 +66,7 @@ public class Lexer
     {
         for (char c : expression.toCharArray())
             lookupChar(c);
+        emitToken();
         return tokens;
     }
 }
