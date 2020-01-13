@@ -1,10 +1,6 @@
 package org.hypergolic.calculator.parser;
 
-import org.hypergolic.calculator.ast.MathVariable;
-
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
 
 public class Lexer
 {
@@ -13,7 +9,7 @@ public class Lexer
         INITIAL,
         AMBIGUOUS_FUNCTION,
         NUMBER,
-        OPERATOR,
+        SINGLE_CHAR,
         SUCCESS,
         INVALID
     }
@@ -31,7 +27,7 @@ public class Lexer
             double value = Double.parseDouble(currentToken.toString());
             tokens.add(new Constant(value));
         }
-        else if (currentState == LexerState.OPERATOR) {
+        else if (currentState == LexerState.SINGLE_CHAR) {
             switch (currentToken.toString())
             {
                 case "+":
@@ -74,8 +70,8 @@ public class Lexer
             currentToken.append(c);
         }
         if ("+-*/^()".indexOf(c) != -1) {
-            emitIfDifferentState(LexerState.OPERATOR);
-            currentState = LexerState.OPERATOR;
+            emitIfDifferentState(LexerState.SINGLE_CHAR);
+            currentState = LexerState.SINGLE_CHAR;
             currentToken.append(c);
             emitToken();
         }
