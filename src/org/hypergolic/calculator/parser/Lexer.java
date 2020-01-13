@@ -13,9 +13,9 @@ public class Lexer
         INITIAL,
         AMBIGUOUS_FUNCTION,
         NUMBER,
+        OPERATOR,
         SUCCESS,
         INVALID
-        //operator not needed since all operators are one char
     }
     private LexerState currentState = LexerState.INITIAL;
     private StringBuilder currentToken = new StringBuilder();
@@ -31,29 +31,30 @@ public class Lexer
             double value = Double.parseDouble(currentToken.toString());
             tokens.add(new Constant(value));
         }
-
-        switch (currentToken.toString())
-        {
-            case "+":
-                tokens.add(new AdditionOperator());
-                break;
-            case "-":
-                tokens.add(new SubtractionOperator());
-                break;
-            case "*":
-                tokens.add(new MultiplicationOperator());
-                break;
-            case "/":
-                tokens.add(new DivisionOperator());
-                break;
-            case "^":
-                tokens.add(new ExponentOperator());
-            case "(":
-                tokens.add(new LeftParenthesis());
-                break;
-            case ")":
-                tokens.add(new RightParenthesis());
-                break;
+        else if (currentState == LexerState.OPERATOR) {
+            switch (currentToken.toString())
+            {
+                case "+":
+                    tokens.add(new AdditionOperator());
+                    break;
+                case "-":
+                    tokens.add(new SubtractionOperator());
+                    break;
+                case "*":
+                    tokens.add(new MultiplicationOperator());
+                    break;
+                case "/":
+                    tokens.add(new DivisionOperator());
+                    break;
+                case "^":
+                    tokens.add(new ExponentOperator());
+                case "(":
+                    tokens.add(new LeftParenthesis());
+                    break;
+                case ")":
+                    tokens.add(new RightParenthesis());
+                    break;
+            }
         }
 
         //clear the current token
@@ -73,6 +74,8 @@ public class Lexer
             currentToken.append(c);
         }
         if ("+-*/^()".indexOf(c) != -1) {
+            emitIfDifferentState(LexerState.OPERATOR);
+            currentState = LexerState.OPERATOR;
             currentToken.append(c);
             emitToken();
         }
