@@ -1,9 +1,25 @@
 package org.hypergolic.calculator.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Lexer
 {
+    private static final Map<String, Token> opMap;
+    static
+    {
+        opMap = new HashMap<>();
+        opMap.put("+", new AdditionOperator());
+        opMap.put("-", new SubtractionOperator());
+        opMap.put("*", new MultiplicationOperator());
+        opMap.put("/", new DivisionOperator());
+        opMap.put("^", new ExponentOperator());
+        opMap.put("(", new LeftParenthesis());
+        opMap.put(")", new RightParenthesis());
+        opMap.put("x", new Variable());
+    }
+
     private enum LexerState
     {
         INITIAL,
@@ -28,33 +44,8 @@ public class Lexer
             tokens.add(new Constant(value));
         }
         else if (currentState == LexerState.SINGLE_CHAR) {
-            switch (currentToken.toString())
-            {
-                case "+":
-                    tokens.add(new AdditionOperator());
-                    break;
-                case "-":
-                    tokens.add(new SubtractionOperator());
-                    break;
-                case "*":
-                    tokens.add(new MultiplicationOperator());
-                    break;
-                case "/":
-                    tokens.add(new DivisionOperator());
-                    break;
-                case "^":
-                    tokens.add(new ExponentOperator());
-                    break;
-                case "(":
-                    tokens.add(new LeftParenthesis());
-                    break;
-                case ")":
-                    tokens.add(new RightParenthesis());
-                    break;
-                case "x":
-                    tokens.add(new Variable());
-                    break;
-            }
+            Token op = opMap.get(currentToken.toString());
+            tokens.add(op);
         }
 
         //clear the current token
