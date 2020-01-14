@@ -26,6 +26,7 @@ public class Lexer
         FUNCTION,
         NUMBER,
         SINGLE_CHAR,
+        AMBIGUOUS,
         SUCCESS,
         INVALID
     }
