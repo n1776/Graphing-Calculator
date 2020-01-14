@@ -50,6 +50,9 @@ public class Lexer
                 case ")":
                     tokens.add(new RightParenthesis());
                     break;
+                case "x":
+                    tokens.add(new Variable());
+                    break;
             }
         }
 
@@ -69,7 +72,7 @@ public class Lexer
             currentState = LexerState.NUMBER;
             currentToken.append(c);
         }
-        if ("+-*/^()".indexOf(c) != -1) {
+        if ("+-*/^()x".indexOf(c) != -1) {
             emitIfDifferentState(LexerState.SINGLE_CHAR);
             currentState = LexerState.SINGLE_CHAR;
             currentToken.append(c);
