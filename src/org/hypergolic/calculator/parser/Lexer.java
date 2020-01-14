@@ -23,7 +23,7 @@ public class Lexer
     private enum LexerState
     {
         INITIAL,
-        AMBIGUOUS_FUNCTION,
+        FUNCTION,
         NUMBER,
         SINGLE_CHAR,
         SUCCESS,
