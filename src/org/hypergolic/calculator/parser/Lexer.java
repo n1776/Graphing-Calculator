@@ -44,6 +44,7 @@ public class Lexer
                     break;
                 case "^":
                     tokens.add(new ExponentOperator());
+                    break;
                 case "(":
                     tokens.add(new LeftParenthesis());
                     break;
