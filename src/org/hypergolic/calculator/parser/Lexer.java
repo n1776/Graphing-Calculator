@@ -80,7 +80,7 @@ public class Lexer
             currentState = LexerState.NUMBER;
             currentToken.append(c);
         }
-        if ("+-*/^()".indexOf(c) != -1) {
+        else if ("+-*/^()".indexOf(c) != -1) {
             emitIfDifferentState(LexerState.SINGLE_CHAR);
             currentState = LexerState.SINGLE_CHAR;
             currentToken.append(c);
