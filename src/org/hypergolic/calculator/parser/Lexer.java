@@ -63,6 +63,12 @@ public class Lexer
             Token op = opMap.get(currentToken.toString());
             tokens.add(op);
         }
+        else if (currentState == LexerState.SYMBOL) {
+            //x is the hard coded function argument
+            if (currentToken.toString().equals("x")) {
+                tokens.add(new Variable());
+            }
+        }
 
         //clear the current token
         currentState = LexerState.SUCCESS;
