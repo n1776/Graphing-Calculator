@@ -86,6 +86,11 @@ public class Lexer
             currentState = LexerState.SINGLE_CHAR;
             currentToken.append(c);
             emitToken();
+        } //we assume the char is a symbol (function or constant)
+        else {
+            emitIfDifferentState(LexerState.AMBIGUOUS);
+            currentState = LexerState.AMBIGUOUS;
+            currentToken.append(c);
         }
 
     }
