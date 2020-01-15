@@ -1,12 +1,18 @@
 package org.hypergolic.calculator.parser;
 
-public class NamedConstant extends Symbol
+public class NamedConstant extends Constant implements Symbol
 {
 
-    final double value;
+    final String name;
     protected NamedConstant(String name, double value)
     {
-        super(name);
-        this.value = value;
+        super(value);
+        this.name = name;
+    }
+
+    @Override
+    public String getName()
+    {
+        return name;
     }
 }
