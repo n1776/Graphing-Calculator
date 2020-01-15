@@ -24,7 +24,6 @@ public class Lexer
     {
         //starting state of lexer
         INITIAL,
-        FUNCTION,
         //a number is being processed
         NUMBER,
         //a single character operator is being processed
