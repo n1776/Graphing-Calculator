@@ -29,9 +29,9 @@ public class Lexer
         //a single character operator is being processed
         //single character ops can not be used in function names
         SINGLE_CHAR,
-        //an ambiguous string is being processed
+        //a string is being processed, potentially a symbol
         //potentially a variable (x), constant, or function
-        AMBIGUOUS,
+        SYMBOL,
         //a token was detected successfully and added to the list
         //the currentToken StringBuilder should be empty
         SUCCESS,
@@ -88,8 +88,8 @@ public class Lexer
             emitToken();
         } //we assume the char is a symbol (function or constant)
         else {
-            emitIfDifferentState(LexerState.AMBIGUOUS);
-            currentState = LexerState.AMBIGUOUS;
+            emitIfDifferentState(LexerState.SYMBOL);
+            currentState = LexerState.SYMBOL;
             currentToken.append(c);
         }
 
