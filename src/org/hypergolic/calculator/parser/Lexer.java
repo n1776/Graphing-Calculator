@@ -18,7 +18,6 @@ public class Lexer
         opMap.put("^", new ExponentOperator());
         opMap.put("(", new LeftParenthesis());
         opMap.put(")", new RightParenthesis());
-        opMap.put("x", new Variable());
     }
 
     private enum LexerState
@@ -73,7 +72,7 @@ public class Lexer
             currentState = LexerState.NUMBER;
             currentToken.append(c);
         }
-        if ("+-*/^()x".indexOf(c) != -1) {
+        if ("+-*/^()".indexOf(c) != -1) {
             emitIfDifferentState(LexerState.SINGLE_CHAR);
             currentState = LexerState.SINGLE_CHAR;
             currentToken.append(c);
