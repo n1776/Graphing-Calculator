@@ -1,6 +1,7 @@
 package org.hypergolic.calculator.parser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,9 +35,16 @@ public class Lexer
     private StringBuilder currentToken = new StringBuilder();
     private ArrayList<Token> tokens = new ArrayList<>();
 
+    public Lexer(Map<String, Symbol> symbolMap)
+    {
+        this.symbolMap = symbolMap;
+    }
+
+    private Map<String, Symbol> symbolMap;
+
     public Lexer()
     {
-
+        this(Collections.emptyMap());
     }
     private void emitToken()
     {
