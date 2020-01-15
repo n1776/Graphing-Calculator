@@ -1,10 +1,14 @@
 package org.hypergolic.calculator;
 
+import org.hypergolic.calculator.parser.NamedConstant;
 import org.hypergolic.calculator.parser.Parser;
+import org.hypergolic.calculator.parser.Symbol;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CommandLine
@@ -32,6 +36,8 @@ public class CommandLine
 
     public void process()
     {
+        Map<String, Symbol> constants = new HashMap<>();
+        constants.put("pi", new NamedConstant("pi", Math.PI));
         while (shouldContinue())
         {
             printStream.print("> ");
