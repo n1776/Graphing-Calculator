@@ -1,13 +1,12 @@
 package org.hypergolic.calculator;
 
-import org.hypergolic.calculator.parser.NamedConstant;
-import org.hypergolic.calculator.parser.Parser;
-import org.hypergolic.calculator.parser.Symbol;
+import org.hypergolic.calculator.parser.*;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -38,11 +37,13 @@ public class CommandLine
     {
         Map<String, Symbol> constants = new HashMap<>();
         constants.put("pi", new NamedConstant("pi", Math.PI));
+        constants.put("e", new NamedConstant("e", Math.E));
         while (shouldContinue())
         {
             printStream.print("> ");
             String input = scanner.nextLine();
-            Evaluable ast = Parser.parseToAST(input);
+            Lexer lexer = new Lexer(constants);
+            Evaluable ast = Parser.parseToAST(lexer.lexExpression(input));
             if (ast.hasVariable())
                 printStream.println("[anonymous function]");
             else
