@@ -2,7 +2,7 @@ package org.hypergolic.calculator.parser;
 
 import org.hypergolic.calculator.Evaluable;
 
-public abstract class Symbol
+public abstract class Symbol implements Token
 {
     final String name;
 
