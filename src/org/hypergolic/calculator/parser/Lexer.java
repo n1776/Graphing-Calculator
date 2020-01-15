@@ -75,17 +75,19 @@ public class Lexer
     }
     private void lookupChar(char c)
     {
+        //if char is part of a literal number
         if ("0123456789.".indexOf(c) != -1) {
             emitIfDifferentState(LexerState.NUMBER);
             currentState = LexerState.NUMBER;
             currentToken.append(c);
-        }
+        } //if char is single character operator
         else if ("+-*/^()".indexOf(c) != -1) {
             emitIfDifferentState(LexerState.SINGLE_CHAR);
             currentState = LexerState.SINGLE_CHAR;
             currentToken.append(c);
             emitToken();
         }
+
     }
 
     public ArrayList<Token> lexExpression(String expression)
