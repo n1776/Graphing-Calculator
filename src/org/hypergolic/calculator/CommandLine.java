@@ -12,9 +12,9 @@ import java.util.Scanner;
 
 public class CommandLine
 {
-    InputStream inputStream;
-    PrintStream printStream;
-    Scanner scanner;
+    private final InputStream inputStream;
+    private final PrintStream printStream;
+    private final Scanner scanner;
 
     public CommandLine()
     {
