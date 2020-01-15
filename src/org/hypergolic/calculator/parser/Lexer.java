@@ -68,6 +68,10 @@ public class Lexer
             if (currentToken.toString().equals("x")) {
                 tokens.add(new Variable());
             }
+            else {
+                Symbol symbol = symbolMap.get(currentToken.toString());
+                tokens.add(symbol);
+            }
         }
 
         //clear the current token
