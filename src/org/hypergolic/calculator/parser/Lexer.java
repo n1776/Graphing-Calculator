@@ -22,12 +22,21 @@ public class Lexer
 
     private enum LexerState
     {
+        //starting state of lexer
         INITIAL,
         FUNCTION,
+        //a number is being processed
         NUMBER,
+        //a single character operator is being processed
+        //single character ops can not be used in function names
         SINGLE_CHAR,
+        //an ambiguous string is being processed
+        //potentially a variable (x), constant, or function
         AMBIGUOUS,
+        //a token was detected successfully and added to the list
+        //the currentToken StringBuilder should be empty
         SUCCESS,
+        //something went wrong
         INVALID
     }
     private LexerState currentState = LexerState.INITIAL;
