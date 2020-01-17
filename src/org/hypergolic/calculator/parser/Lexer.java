@@ -85,6 +85,10 @@ public class Lexer
     }
     private void lookupChar(char c)
     {
+        //ignore whitespace
+        if (Character.isWhitespace(c))
+            return;
+
         //if char is part of a literal number
         if ("0123456789.".indexOf(c) != -1) {
             emitIfDifferentState(LexerState.NUMBER);
