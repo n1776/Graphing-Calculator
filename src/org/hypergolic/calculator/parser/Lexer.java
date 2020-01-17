@@ -42,16 +42,16 @@ public class Lexer
     private StringBuilder currentToken = new StringBuilder();
     private ArrayList<Token> tokens = new ArrayList<>();
 
-    public Lexer(Map<String, Symbol> symbolMap)
+    public Lexer(SymbolTable symbolTable)
     {
-        this.symbolMap = symbolMap;
+        this.symbolTable = symbolTable;
     }
 
-    private Map<String, Symbol> symbolMap;
+    private SymbolTable symbolTable;
 
     public Lexer()
     {
-        this(Collections.emptyMap());
+        this(new SymbolTable());
     }
     private void emitToken()
     {
@@ -69,8 +69,8 @@ public class Lexer
                 tokens.add(new Variable());
             }
             else {
-                Symbol symbol = symbolMap.get(currentToken.toString());
-                tokens.add(symbol);
+                Token token = symbolTable.getSymbol(currentToken.toString());
+                tokens.add(token);
             }
         }
 

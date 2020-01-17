@@ -41,9 +41,8 @@ public class CommandLine
 
     public void process()
     {
-        Map<String, Symbol> constants = new HashMap<>();
-        constants.put("pi", new NamedConstant("pi", Math.PI));
-        constants.put("e", new NamedConstant("e", Math.E));
+        SymbolTable table = new SymbolTable();
+
         while (shouldContinue())
         {
             printStream.print("> ");
@@ -51,7 +50,7 @@ public class CommandLine
             if (enableTiming) {
                 previousTime = System.nanoTime();
             }
-            Lexer lexer = new Lexer(constants);
+            Lexer lexer = new Lexer(table);
             Evaluable ast = Parser.parseToAST(lexer.lexExpression(input));
             if (ast.hasVariable())
                 printStream.println("[anonymous function]");
