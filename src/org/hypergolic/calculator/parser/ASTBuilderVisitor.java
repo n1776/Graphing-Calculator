@@ -14,7 +14,7 @@ public class ASTBuilderVisitor implements Visitor
     {
         //There should only be one evaluable left, which is the root of the tree
         if (evaluables.size() != 1)
-            throw new IllegalStateException("Invalid expression added");
+            throw new IllegalArgumentException("Invalid expression added");
         else
             return evaluables.pop();
     }
