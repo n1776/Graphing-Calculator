@@ -1,12 +1,23 @@
 package org.hypergolic.calculator.parser;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class SymbolTable
 {
-    Map<String, Constant> constants;
+    private Map<String, Constant> constants;
 
-    Token getSymbol(String name)
+    public SymbolTable()
+    {
+        constants = new HashMap<>();
+    }
+
+    public void addConstant(String name, Constant constant)
+    {
+        constants.put(name, constant);
+    }
+
+    public Token getSymbol(String name)
     {
         return constants.get(name);
     }
