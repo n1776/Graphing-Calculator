@@ -1,5 +1,6 @@
 package org.hypergolic.calculator;
 
+import org.hypergolic.calculator.ast.MathConstant;
 import org.hypergolic.calculator.parser.*;
 
 import java.io.InputStream;
@@ -42,6 +43,8 @@ public class CommandLine
     public void process()
     {
         SymbolTable table = new SymbolTable();
+        table.addConstant("pi", new Constant(Math.PI));
+        table.addConstant("e", new Constant(Math.E));
 
         while (shouldContinue())
         {
