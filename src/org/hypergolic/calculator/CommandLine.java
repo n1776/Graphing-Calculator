@@ -63,7 +63,7 @@ public class CommandLine
             if (enableTiming) {
                 long currentTime = System.nanoTime();
                 double elapsedTimeInMs = (currentTime - previousTime) / 1e6;
-                System.out.println("Time elapsed: " + timeFormat.format(elapsedTimeInMs) + "ms");
+                printStream.println("Time elapsed: " + timeFormat.format(elapsedTimeInMs) + "ms");
             }
 
         }
