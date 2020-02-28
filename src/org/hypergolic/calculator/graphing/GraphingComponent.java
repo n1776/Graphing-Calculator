@@ -36,10 +36,17 @@ public class GraphingComponent extends JComponent
 
         final double MAX_X = 2 * Math.PI;
         final double SCALE = w / MAX_X;
-        p.moveTo(0,0);
+        double previousY = f.evaluate((-w)/SCALE);
+        p.moveTo(0 , previousY);
         for (double x = -w; x <= w; x+= 0.5) {
             double xScaled = x / SCALE;
-            p.lineTo(w + x, h - (SCALE * f.evaluate(xScaled)));
+            double y = f.evaluate(xScaled);
+            if (Math.abs((SCALE * (y - previousY))/h) < 0.5)
+                p.lineTo(w + x, h - (SCALE * y));
+            else
+                p.moveTo(w + x, h - (SCALE * y));
+            previousY = y;
+
         }
         //p.closePath();
         g2.draw(p);
