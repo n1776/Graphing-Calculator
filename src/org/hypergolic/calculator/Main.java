@@ -1,10 +1,10 @@
 package org.hypergolic.calculator;
 
-import org.hypergolic.calculator.parser.Lexer;
-import org.hypergolic.calculator.parser.Parser;
-import org.hypergolic.calculator.parser.ShuntingYardVisitor;
+import org.hypergolic.calculator.ast.MathVariable;
+import org.hypergolic.calculator.graphing.GraphingComponent;
 
-import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
 
 public class Main
 {

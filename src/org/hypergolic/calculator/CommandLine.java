@@ -1,6 +1,7 @@
 package org.hypergolic.calculator;
 
 import org.hypergolic.calculator.ast.MathConstant;
+import org.hypergolic.calculator.graphing.GraphingFrame;
 import org.hypergolic.calculator.parser.*;
 
 import java.io.InputStream;
@@ -56,7 +57,7 @@ public class CommandLine
             Lexer lexer = new Lexer(table);
             Evaluable ast = Parser.parseToAST(lexer.lexExpression(input));
             if (ast.hasVariable())
-                printStream.println("[anonymous function]");
+                new GraphingFrame(ast);
             else
                 printStream.println(ast.evaluate(Double.NaN));
 
