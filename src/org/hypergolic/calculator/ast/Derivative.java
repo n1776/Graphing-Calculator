@@ -21,9 +21,4 @@ public class Derivative extends UnaryOperator
         return ((value.evaluate(x + h) - value.evaluate(x - h)) / (2*h));
     }
 
-    @Override
-    public boolean hasVariable()
-    {
-        return value.hasVariable();
-    }
 }

@@ -12,6 +12,12 @@ public abstract class UnaryOperator implements Evaluable
     }
 
     @Override
+    public boolean hasVariable()
+    {
+        return value.hasVariable();
+    }
+
+    @Override
     public String getTreeStructure(String indent, boolean last, boolean isRoot)
     {
         String str;
