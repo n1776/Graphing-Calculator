@@ -3,6 +3,7 @@ import org.hypergolic.calculator.Evaluable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Path2D;
 
 public class GraphingComponent extends JComponent
 {
@@ -31,15 +32,17 @@ public class GraphingComponent extends JComponent
         g2.setStroke(new BasicStroke(2));
         g2.setColor(Color.red);
 
-        Polygon p = new Polygon();
+        Path2D.Double p = new Path2D.Double();
+
         final double MAX_X = 2 * Math.PI;
         final double SCALE = w / MAX_X;
-
-        for (int x = -w; x <= w; ++x) {
+        p.moveTo(0,0);
+        for (double x = -w; x <= w; x+= 0.5) {
             double xScaled = x / SCALE;
-            p.addPoint(w + x, h - (int)Math.round(SCALE * f.evaluate(xScaled)));
+            p.lineTo(w + x, h - (SCALE * f.evaluate(xScaled)));
         }
-        g2.drawPolyline(p.xpoints, p.ypoints, p.npoints);
+        //p.closePath();
+        g2.draw(p);
 
     }
 

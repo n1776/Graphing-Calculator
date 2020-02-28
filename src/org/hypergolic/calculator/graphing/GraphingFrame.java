@@ -1,7 +1,6 @@
 package org.hypergolic.calculator.graphing;
 
 import org.hypergolic.calculator.Evaluable;
-import org.hypergolic.calculator.ast.MathVariable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +15,5 @@ public class GraphingFrame
         frame.setVisible(true);
         frame.setExtendedState(JFrame.ICONIFIED);
         frame.setExtendedState(JFrame.NORMAL);
-
     }
 }
