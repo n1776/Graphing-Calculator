@@ -38,6 +38,12 @@ public class ASTBuilderVisitor implements Visitor
     { evaluables.push(new MathVariable()); }
 
     @Override
+    public void visit(Function function)
+    {
+        evaluables.push(function.func);
+    }
+
+    @Override
     public void visit(AdditionOperator additionOperator)
     {
         final Evaluable second = evaluables.pop();

@@ -3,7 +3,6 @@ package org.hypergolic.calculator.parser;
 import org.hypergolic.calculator.Evaluable;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 
 public class ShuntingYardVisitor implements Visitor
 {
@@ -22,6 +21,12 @@ public class ShuntingYardVisitor implements Visitor
     public void visit(LeftParenthesis leftParenthesis)
     {
         opStack.push(leftParenthesis);
+    }
+
+    @Override
+    public void visit(Function function)
+    {
+        opStack.push(function);
     }
 
     @Override
